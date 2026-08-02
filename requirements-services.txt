@@ -1,0 +1,30 @@
+# Minimal set to run the prediction service and Streamlit demo (app/,
+# services/, streamlit_app.py, model/config.py, model/features.py,
+# model/utils.py) -- no database driver needed, since
+# services/known_categories.py loads from the bundled known_categories.json
+# snapshot rather than querying Postgres. Excludes everything only needed
+# for EDA, notebooks, or training a new model (matplotlib, seaborn,
+# jupyterlab, psycopg, ...). See requirements.txt for the full project/dev
+# environment, which includes this file via `-r requirements-services.txt`.
+Flask==3.1.3
+pydantic==2.13.4
+python-dotenv==1.2.2
+pandas==3.0.5
+numpy==2.5.1
+joblib==1.5.3
+streamlit==1.60.0
+requests==2.34.2
+
+# catboost and scikit-learn aren't imported directly anywhere under app/ or
+# services/, but they're still hard runtime requirements: catboost.CatBoostRegressor
+# is the class joblib.load() unpickles the model artifact into, and
+# model/utils.py imports sklearn.metrics at module level (only
+# evaluate_model() -- a training-only function -- actually uses it, but the
+# import runs regardless whenever model.utils is imported).
+catboost==1.2.10
+scikit-learn==1.9.0
+
+# services/weather.py -- Open-Meteo forecast client, with caching and retries.
+openmeteo_requests==1.7.5
+requests-cache==1.3.3
+retry-requests==2.0.0

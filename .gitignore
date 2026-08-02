@@ -1,0 +1,45 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Claude
+.claude/
+CLAUDE.local.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Linting / type-checking caches
+.ruff_cache/
+.mypy_cache/
+
+# Model artifacts -- the trained model committed at model/artifacts/ is the
+# one exception, so the API/Streamlit app work out of the box without
+# retraining. Everything else CatBoost/joblib produces is still ignored.
+model/catboost_info/
+notebooks/catboost_info/
+catboost_info/
+*.pkl
+*.joblib
+*.cbm
+!model/artifacts/catboost_incident_regressor.joblib
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

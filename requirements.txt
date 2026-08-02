@@ -1,0 +1,24 @@
+# Full project/dev environment: the prediction service plus everything
+# needed for the database/ pipeline, EDA, notebooks, and training a new
+# model. Packages shared with the service (pandas, catboost, Flask, ...) are
+# pinned once, in requirements-services.txt, and pulled in below -- not
+# duplicated here.
+-r requirements-services.txt
+
+# Postgres access -- needed only by database/ (create_tables, populate_db,
+# queries, export_known_categories) and model/train.py. Not needed to just
+# run the API/Streamlit app off the committed model + known_categories.json.
+psycopg[binary]==3.3.4
+
+# Data population / EDA / training -- used directly by database/,
+# model/train.py, notebooks/*.ipynb. (requests is already pulled in via
+# requirements-services.txt, used directly by database/ckan_client.py too.)
+matplotlib==3.11.1
+seaborn==0.13.2
+
+# Notebook tooling -- needed to open/edit/execute the .ipynb files in notebooks/
+jupyterlab==4.6.2
+ipykernel==7.3.0
+nbformat==5.10.4
+nbconvert==7.17.1
+nbclient==0.11.0

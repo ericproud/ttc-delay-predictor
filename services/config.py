@@ -1,0 +1,9 @@
+from pathlib import Path
+
+MAX_FORECAST_DAYS = 16
+
+WEATHER_CACHE_DIR = Path(__file__).resolve().parent.parent / ".cache"
+WEATHER_CACHE_PATH = str(WEATHER_CACHE_DIR / "openmeteo")
+WEATHER_CACHE_EXPIRE_SECONDS = 3600
+WEATHER_REQUEST_RETRIES = 5
+WEATHER_REQUEST_BACKOFF_FACTOR = 0.2

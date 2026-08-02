@@ -1,0 +1,11 @@
+# Dev tooling on top of the full project environment: linting, formatting,
+# type-checking, and git hooks. Not needed to run the app or train the model.
+-r requirements.txt
+
+ruff==0.16.1
+mypy==2.3.0
+pre-commit==4.6.1
+
+# Type stubs so mypy can check code that touches these libraries.
+pandas-stubs==3.0.5.260730
+types-requests==2.33.0.20260712
